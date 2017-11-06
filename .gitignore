@@ -114,6 +114,7 @@ ENV/
 .idea/**/tasks.xml
 .idea/dictionaries
 src/.idea/workspace.xml
+*.iml
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
