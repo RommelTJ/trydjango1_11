@@ -1,17 +1,33 @@
 import random
-from django.http import HttpResponse
 from django.shortcuts import render
+
 
 # Create your views here.
 # Function based view
 def home(request):
-    num1 = random.randint(0, 100)
-    num2 = random.randint(0, 100)
-    num3 = random.randint(0, 100)
-    some_list = [num1, num2, num3]
+    num = None
+    some_list = [
+        random.randint(0, 100000000),
+        random.randint(0, 100000000),
+        random.randint(0, 100000000)
+    ]
+    condition_bool_item = False
+    if condition_bool_item:
+        num = random.randint(0, 100000000)
     context = {
-        "html_var": "context variable",
-       "num": num1,
+        "num": num,
         "some_list": some_list
     }
-    return render(request, "base.html", context)
+    return render(request, "home.html", context)
+
+
+def about(request):
+    context = {
+    }
+    return render(request, "about.html", context)
+
+
+def contact(request):
+    context = {
+    }
+    return render(request, "contact.html", context)
