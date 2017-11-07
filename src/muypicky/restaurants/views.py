@@ -1,21 +1,11 @@
-import random
-from django.views.generic import TemplateView
+from django.shortcuts import render
+from .models import RestaurantLocation
 
 
-class HomeView(TemplateView):
-    template_name = 'home.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-        num = random.randint(0, 1000)
-        some_list = [
-            random.randint(0, 1000),
-            random.randint(0, 1000),
-            random.randint(0, 1000)
-        ]
-        context = {
-            "num": num,
-            "some_list": some_list
-        }
-        return context
-
+def restaurant_listview(request):
+    template_name = 'restaurants/restaurants_list.html'
+    queryset = RestaurantLocation.objects.all()
+    context = {
+        "object_list": queryset
+    }
+    return render(request, template_name, context)
