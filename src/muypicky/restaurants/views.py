@@ -3,25 +3,26 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
+from .forms import RestaurantCreateForm
 from .models import RestaurantLocation
 
 
 def restaurant_createview(request):
-    # if request.method == "GET":
-    #     print("get data")
-    if request.method == "POST":
-        title = request.POST.get("title") #request.POST["title"]
-        location = request.POST.get("location")
-        category = request.POST.get("category")
+    form = RestaurantCreateForm(request.POST or None)
+    errors = None
+    if form.is_valid():
         obj = RestaurantLocation.objects.create(
-            name = title,
-            location= location,
-            category = category
+            name = form.cleaned_data.get('name'),
+            location= form.cleaned_data.get('location'),
+            category = form.cleaned_data.get('category')
 
         )
         return HttpResponseRedirect("/restaurants/")
+    if form.errors:
+        errors = form.errors
+
     template_name = 'restaurants/form.html'
-    context = {}
+    context = {"form": form, "errors": errors}
     return render(request, template_name, context)
 
 
