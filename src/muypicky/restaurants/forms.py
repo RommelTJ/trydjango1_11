@@ -30,3 +30,9 @@ class RestaurantLocationCreateForm(forms.ModelForm):
             raise forms.ValidationError("Not a valid name")
         return name
 
+    def clean_location(self):
+        location = self.cleaned_data.get("location")
+        if location == "World":
+            raise forms.ValidationError("Please be more specific")
+        return location
+
