@@ -1,5 +1,6 @@
 from django import forms
 
+from .validators import validate_category
 from .models import RestaurantLocation
 
 
