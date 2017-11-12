@@ -46,7 +46,7 @@ class RestaurantLocation(models.Model):
     #my_date_field = models.DateField(auto_now=False, auto_now_add=False)
 
     objects = RestaurantLocationManager()
-    
+
     def __str__(self):
         return self.name
 
