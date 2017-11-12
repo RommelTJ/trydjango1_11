@@ -1,15 +1,7 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView
-
-from restaurants.views import (
-    restaurant_createview,
-    restaurant_listview,
-    RestaurantListView,
-    RestaurantDetailView,
-    RestaurantCreateView
-)
+from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
