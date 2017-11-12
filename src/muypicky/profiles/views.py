@@ -15,7 +15,6 @@ class ProfileFollowToggle(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         username_to_toggle = request.POST.get("username")
         profile_, is_following = Profile.objects.toggle_follow(request.user, username_to_toggle)
-        print(is_following)
         return redirect("/u/%s/" % profile_.user.username)
 
 
